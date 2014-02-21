@@ -1,3 +1,5 @@
 .hg
 .hgignore
 .gradle
+build
+out
