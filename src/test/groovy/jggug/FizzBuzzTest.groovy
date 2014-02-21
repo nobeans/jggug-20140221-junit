@@ -14,7 +14,6 @@ class FizzBuzzTest {
         assert fizzBuzz.get(7) == "7"
         assert fizzBuzz.get(8) == "8"
         assert fizzBuzz.get(11) == "11"
-
     }
 
     def "1から100の間で3の倍数はFizzと返す"() {
@@ -30,14 +29,24 @@ class FizzBuzzTest {
         assert fizzBuzz.get(20) == "Buzz"
     }
 
-    //def "1から100の間で3と5の倍数はFizzBuzzと返す"() {
-    //    //なにか処理
-    //    println "D"
-    //}
-    //
-    //def "1未満もしくは101以上の場合は例外を返す"() {
-    //    //なにか処理
-    //    println "E"
-    //}
+    def "1から100の間で3と5の倍数はFizzBuzzと返す"() {
+        assert fizzBuzz.get(15) == "FizzBuzz"
+        assert fizzBuzz.get(30) == "FizzBuzz"
+    }
+
+    def "1未満もしくは101以上の場合は例外を返す"() {
+        try {
+            fizzBuzz.get(0)
+            assert false
+        } catch (IllegalArgumentException e) {
+            assert e.message == "too small"
+        }
+        try {
+            fizzBuzz.get(101)
+            assert false
+        } catch (IllegalArgumentException e) {
+            assert e.message == "too large"
+        }
+    }
 
 }
