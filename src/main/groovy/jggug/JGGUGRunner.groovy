@@ -13,7 +13,7 @@ class JGGUGRunner extends Runner {
 
     JGGUGRunner(Class<?> klass) {
         this.klass = klass
-        println "Constructor: $klass"
+        //println "Constructor: $klass"
 
         desc = Description.createTestDescription(klass.name, "")
         klass.declaredMethods.each { method ->
@@ -23,7 +23,7 @@ class JGGUGRunner extends Runner {
             if (method.name =~ /^[a-zA-Z].*/) return // 日本語始まり以外は無視
 
             desc.addChild Description.createTestDescription(klass.name, method.name)
-            println "Found test method: ${method.name}"
+            //println "Found test method: ${method.name}"
         }
     }
 
@@ -37,8 +37,8 @@ class JGGUGRunner extends Runner {
         description.children.each { child ->
             notifier.fireTestStarted(child)
 
-            println ">" * 10
-            println "Running ${child.displayName}"
+            //println ">" * 10
+            //println "Running ${child.displayName}"
 
             def result = new Result()
             try {
@@ -49,7 +49,7 @@ class JGGUGRunner extends Runner {
                 notifier.fireTestFinished(child)
 
             } catch (AssertionError e) {
-                println e.message
+                //println e.message
 
                 def failure = new Failure(child, e)
                 notifier.fireTestFailure(failure)

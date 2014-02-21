@@ -8,13 +8,14 @@ class FizzBuzzTest {
     def fizzBuzz = new FizzBuzz()
 
     def "1から100の間で3の倍数でも5の倍数でもないものはその数字を返す"() {
-        //なにか処理
-        println "A"
+        assert fizzBuzz.get(1) == "1"
+        assert fizzBuzz.get(2) == "2"
+        assert fizzBuzz.get(4) == "4"
+        assert fizzBuzz.get(6) == "6"
     }
 
     def "1から100の間で3の倍数はFizzと返す"() {
-        //なにか処理
-        assert 1 == 2
+        assert fizzBuzz.get(3) == "Fizz"
     }
 
     //def "1から100の間で5の倍数はBuzzと返す"() {
