@@ -31,33 +31,29 @@ class JGGUGRunner extends Runner {
 
     @Override
     void run(RunNotifier notifier) {
-        //notifier.fireTestStarted(description)
-
         description.children.each { child ->
             notifier.fireTestStarted(child)
-
-            def instance = klass.newInstance()
 
             println ">" * 10
             println "Running ${child.displayName}"
 
             def result = new Result()
             def listener = result.createListener()
+            notifier.addFirstListener(listener)
 
             try {
+                def instance = klass.newInstance()
                 instance.invokeMethod(child.methodName, null)
 
                 listener.testFinished(child)
                 notifier.fireTestRunFinished(result)
+
             } catch (AssertionError e) {
                 listener.testFailure(null)
-                notifier.fireTestFailure(result)
+                notifier.fireTestFailure(null)
             }
-        }
 
-        //def result = new Result()
-        //def listener = result.createListener()
-        //listener.testRunFinished(null)
-        //notifier.fireTestRunFinished(result)
+            notifier.fireTestFinished(child)
+        }
     }
 }
