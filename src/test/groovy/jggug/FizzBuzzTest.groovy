@@ -5,6 +5,8 @@ import org.junit.runner.RunWith
 @RunWith(JGGUGRunner.class)
 class FizzBuzzTest {
 
+    def fizzBuzz = new FizzBuzz()
+
     def "1から100の間で3の倍数でも5の倍数でもないものはその数字を返す"() {
         //なにか処理
         println "A"

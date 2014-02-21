@@ -19,7 +19,9 @@ class JGGUGRunner extends Runner {
         klass.declaredMethods.each { method ->
             if (method.returnType != Object) return
             if (method.parameterTypes.size() > 0) return
-            if (method.name =~ /super\$.*/) return
+            if (method.name =~ /^super\$.*/) return  // 何か混ざるので無視
+            if (method.name =~ /^[a-zA-Z].*/) return // 日本語始まり以外は無視
+
             desc.addChild Description.createTestDescription(klass.name, method.name)
             println "Found test method: ${method.name}"
         }
