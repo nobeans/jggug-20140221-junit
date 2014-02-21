@@ -12,7 +12,7 @@ class FizzBuzzTest {
 
     def "1から100の間で3の倍数はFizzと返す"() {
         //なにか処理
-        println "B"
+        assert 1 == 2
     }
 
     //def "1から100の間で5の倍数はBuzzと返す"() {

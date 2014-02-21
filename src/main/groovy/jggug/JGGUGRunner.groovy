@@ -3,6 +3,7 @@ package jggug
 import org.junit.runner.Description
 import org.junit.runner.Result
 import org.junit.runner.Runner
+import org.junit.runner.notification.Failure
 import org.junit.runner.notification.RunNotifier
 
 class JGGUGRunner extends Runner {
@@ -38,22 +39,20 @@ class JGGUGRunner extends Runner {
             println "Running ${child.displayName}"
 
             def result = new Result()
-            def listener = result.createListener()
-            notifier.addFirstListener(listener)
-
             try {
                 def instance = klass.newInstance()
                 instance.invokeMethod(child.methodName, null)
 
-                listener.testFinished(child)
                 notifier.fireTestRunFinished(result)
+                notifier.fireTestFinished(child)
 
             } catch (AssertionError e) {
-                listener.testFailure(null)
-                notifier.fireTestFailure(null)
+                println e.message
+
+                def failure = new Failure(child, e)
+                notifier.fireTestFailure(failure)
             }
 
-            notifier.fireTestFinished(child)
         }
     }
 }
