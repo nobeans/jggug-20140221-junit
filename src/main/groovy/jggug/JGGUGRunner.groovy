@@ -17,6 +17,7 @@ class JGGUGRunner extends Runner {
 
         desc = Description.createTestDescription(klass.name, "")
         klass.declaredMethods.each { method ->
+            // まずは素直に@Testを付けて絞り込んだ方がいい予感
             if (method.returnType != Object) return
             if (method.parameterTypes.size() > 0) return
             if (method.name =~ /^super\$.*/) return  // 何か混ざるので無視
