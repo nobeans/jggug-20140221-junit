@@ -3,6 +3,12 @@ package jggug
 class FizzBuzz {
 
     String get(int number) {
-        number as String
+        if (number % 3 == 0) {
+            return "Fizz"
+        }
+        if (number % 5 == 0) {
+            return "Buzz"
+        }
+        return number as String
     }
 }
